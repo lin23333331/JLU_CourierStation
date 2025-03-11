@@ -1,7 +1,7 @@
 #include "menu.h"
 #include <stdio.h>
 
-void showMenu1(){
+void showMenu_main(){
     //程序主页面
     printf("*************************\n");
     printf("***** 请选择用户类型 *****\n");
@@ -11,7 +11,7 @@ void showMenu1(){
     printf("*************************\n");
 }
 
-void showMenu2(){
+void showMenu_userLanding(){
     //用户登录页面
     printf("*************************\n");
     printf("***** 请选择操作类型 *****\n");
@@ -20,7 +20,7 @@ void showMenu2(){
     printf("*************************\n");
 }
 
-void showMenu3(){
+void showMenu_uerOperating(){
     //用户操作页面
     printf("*************************\n");
     printf("***** 请选择操作类型 *****\n");
@@ -30,7 +30,7 @@ void showMenu3(){
     printf("*************************\n");
 }
 
-void showMenu4(){
+void showMenu_adminOperating(){
     //管理员操作页面
     printf("*************************\n");
     printf("***** 请选择操作类型  *****\n");
