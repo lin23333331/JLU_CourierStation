@@ -1,8 +1,9 @@
 #ifndef USER_H
 #define USER_H
 #define len 100
+#define year 365
 
-int count = 0;                          // 包裹数量计数器
+int count[year] = {0};                   // 包裹数量计数器
 
 // 收件包裹结构体定义
 struct package_r {
