@@ -37,9 +37,15 @@ int main() {
                 scanf("%s", phone_number);
                 printf("请输入密码: ");
                 scanf("%s", password);
-                printf("请输入用户类型 (1-普通用户, 2-VIP用户): ");
+                printf("请输入用户类型 (1-普通用户, 2-VIP用户，3-企业用户，4-学生用户,5-老年用户): ");
                 scanf("%d", &customer_type);
+                while(customer_type < 1 && customer_type > 5){
+                    printf("输入数据非法，请重新输入！");
+                    printf("请输入用户类型 (1-普通用户, 2-VIP用户，3-企业用户，4-学生用户,5-老年用户): ");
+                    scanf("%d", &customer_type);
+                }
                 customerList = addCustomer(customerList, user_id, username, phone_number, password, customer_type);
+                printf("用户添加成功！");
                 break;
             }
             case 2:
