@@ -2,6 +2,7 @@
     "files.associations": {
         "structure.h": "c",
         "stdio.h": "c",
-        "fileoperaions.h": "c"
+        "fileoperaions.h": "c",
+        "receivedpackage.h": "c"
     }
 }

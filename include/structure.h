@@ -1,50 +1,49 @@
 #ifndef STRUCTURE_H
 #define STRUCTURE_H
 
-#define RECEIVED_FILE "received_packages.txt"
-#define SENT_FILE "sent_packages.txt"
-#define CUSTOMER_FILE "customers.txt"
+#define RECEIVED_FILE "received_packages.txt" // 收件包裹文件
+#define SENT_FILE "sent_packages.txt" // 寄件包裹文件
+#define CUSTOMER_FILE "customers.txt" // 用户文件
 
-#define MAX_LEN 100
+#define MAX_LEN 100 // 字符串最大长度
 
 // 收件包裹结构体
 struct package_r {
-    char package_id[MAX_LEN];
-    double volume;
-    int package_type;
-    int ifCollection;
-    double shipping_fee;
-    int package_status;
-    struct package_r *next;
+    char package_id[MAX_LEN]; // 包裹ID
+    double volume; // 体积
+    int package_type; // 包裹类型
+    int ifCollection; // 是否代收
+    double shipping_fee; // 运费
+    int package_status; // 包裹状态
+    struct package_r *next; // 下一个包裹
 };
 
 // 寄件包裹结构体
 struct package_s {
-    char package_id[MAX_LEN];
-    char sender_name[MAX_LEN];
-    char receiver_name[MAX_LEN];
-    char sender_address[MAX_LEN];
-    char receiver_address[MAX_LEN];
-    double weight;
-    double volume;
-    int package_type;
-    char order_time[MAX_LEN];
-    double shipping_fee;
-    int package_status;
-    char description[MAX_LEN];
-    struct package_s *next;
+    char package_id[MAX_LEN]; // 包裹ID
+    char sender_name[MAX_LEN]; // 寄件人姓名
+    char receiver_name[MAX_LEN]; // 收件人姓名
+    char sender_address[MAX_LEN]; // 寄件人地址
+    char receiver_address[MAX_LEN]; // 收件人地址
+    double volume; // 体积
+    int package_type; // 包裹类型
+    char order_time[MAX_LEN]; // 下单时间
+    double shipping_fee; // 运费
+    int package_status; // 包裹状态
+    char description[MAX_LEN]; // 包裹描述
+    struct package_s *next; // 下一个包裹
 };
 
 // 用户结构体
 struct customer {
-    int user_id;
-    char username[MAX_LEN];
-    char phone_number[MAX_LEN];
-    char password[MAX_LEN];
-    int customer_type;
-    struct package_r *received_packages;
-    struct package_s *send_packages;
-    struct customer *next;
+    int user_id; // 用户ID
+    char username[MAX_LEN]; // 用户名
+    char phone_number[MAX_LEN]; // 电话号码
+    char password[MAX_LEN]; // 密码
+    int customer_type; // 用户类型
+    struct package_r *received_packages; // 收件包裹
+    struct package_s *send_packages; // 寄件包裹
+    struct customer *next; // 下一个用户
 };
 
 #endif // STRUCTURE_H

@@ -8,5 +8,8 @@ struct customer *addCustomer(struct customer *head, int user_id, const char *use
 void queryCustomer(struct customer *head);
 struct customer *deleteCustomer(struct customer *head);
 void freeCustomers(struct customer *head);
+void customersCreating();
+void displayMenu_customer();
+int isUserIdDuplicate(struct customer *head, int user_id);
 
 #endif // CUSTOMER_H
