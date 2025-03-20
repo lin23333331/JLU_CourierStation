@@ -24,9 +24,11 @@ void addReceivedPackage(struct customer *user) {
     scanf("%d", &newPackage->package_type);
     printf("是否需要到付 (0-不需要, 1-需要): ");
     scanf("%d", &newPackage->ifCollection);
-    printf("请输入运输费用: ");
-    scanf("%lf", &newPackage->shipping_fee);
-    printf("请输入包裹状态 (1-损坏, 2-违禁品, 3-逾期): ");
+    if(newPackage->ifCollection){
+        printf("请输入运输费用: ");
+        scanf("%lf", &newPackage->shipping_fee);
+    }
+    printf("请输入包裹状态 (1-正常, 2-损坏, 3-违禁品): ");
     scanf("%d", &newPackage->package_status);
 
     newPackage->next = user->received_packages;
@@ -50,9 +52,14 @@ void queryReceivedPackages(struct customer *user) {
 
     printf("用户 %s 的收件包裹列表:\n", user->username);
     while (current) {
-        printf("包裹ID: %s, 体积: %.2f, 类型: %d, 到付: %d, 运费: %.2f, 状态: %d\n",
+        printf("包裹ID: %s, 体积: %.2f, 类型: %d,状态: %d, 到付: %d",
                current->package_id, current->volume, current->package_type,
-               current->ifCollection, current->shipping_fee, current->package_status);
+               current->package_status,current->ifCollection);
+        if(current->ifCollection){
+            printf("运费:%.2f\n",current->shipping_fee);
+        }else{
+            printf("\n");
+        }
         current = current->next;
     }
 }
@@ -66,20 +73,19 @@ void freeReceivedPackages(struct package_r *head) {
     }
 }
 
+// 显示收件包裹管理菜单
 void displayMenu_receivedPackage() {
-    printf("\n========== 包裹管理系统 ==========\n");
-    printf("1. 添加用户\n");
-    printf("2. 查询用户信息\n");
-    printf("3. 添加收件包裹\n");
-    printf("4. 查询收件包裹\n");
-    printf("0. 退出系统\n");
-    printf("=================================\n");
+    printf("\n========== 收件包裹管理系统 ==========\n");
+    printf("1. 添加收件包裹\n");
+    printf("2. 查询收件包裹\n");
+    printf("3. 保存收件包裹\n");
+    printf("4. 加载收件包裹\n");
+    printf("0. 返回主菜单\n");
+    printf("=====================================\n");
 }
 
-// 创建收件包裹
-void receivedPackagesCreating() {
-    struct customer *customerList = NULL;
-
+// 收件包裹管理功能
+void receivedPackagesCreating(struct customer *customerList) {
     int choice;
     do {
         displayMenu_receivedPackage();
@@ -125,18 +131,6 @@ void receivedPackagesCreating() {
                 queryReceivedPackages(current);
                 break;
             }
-            case 3:
-                // 删除用户
-                customerList = deleteCustomer(customerList);
-                break;
-            case 4:
-                // 保存用户数据
-                saveCustomers(customerList);
-                break;
-            case 5:
-                // 加载用户数据
-                customerList = loadCustomers();
-                break;
             case 0:
                 printf("返回主菜单...\n");
                 break;
@@ -146,7 +140,4 @@ void receivedPackagesCreating() {
         system("pause");
         system("cls");
     } while (choice != 0);
-
-    freeCustomers(customerList);
-    return;
 }

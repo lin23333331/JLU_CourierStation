@@ -123,7 +123,7 @@ int isUserIdDuplicate(struct customer *head, int user_id) {
     return 0; // 用户 ID 不存在
 }
 
-void displayMenu() {
+void displayMenu_customer() {
     printf("\n========== 包裹管理系统 ==========\n");
     printf("1. 添加用户\n");
     printf("2. 查询用户信息\n");
@@ -134,12 +134,10 @@ void displayMenu() {
     printf("=================================\n");
 }
 
-void customersCreating(){
-    struct customer *customerList = NULL;
-
+struct customer *customersCreating(struct customer *customerList) {
     int choice;
     do {
-        displayMenu();
+        displayMenu_customer();
         printf("请输入您的选择: ");
         scanf("%d", &choice);
 
@@ -165,13 +163,13 @@ void customersCreating(){
                 scanf("%s", password);
                 printf("请输入用户类型 (1-普通用户, 2-VIP用户，3-企业用户，4-学生用户,5-老年用户): ");
                 scanf("%d", &customer_type);
-                while(customer_type < 1 && customer_type > 5){
-                    printf("输入数据非法，请重新输入！");
+                while (customer_type < 1 || customer_type > 5) {
+                    printf("输入数据非法，请重新输入！\n");
                     printf("请输入用户类型 (1-普通用户, 2-VIP用户，3-企业用户，4-学生用户,5-老年用户): ");
                     scanf("%d", &customer_type);
                 }
                 customerList = addCustomer(customerList, user_id, username, phone_number, password, customer_type);
-                printf("用户添加成功！");
+                printf("用户添加成功！\n");
                 break;
             }
             case 2:
@@ -187,7 +185,7 @@ void customersCreating(){
                 customerList = loadCustomers();
                 break;
             case 0:
-                printf("退出系统...\n");
+                printf("返回主菜单...\n");
                 break;
             default:
                 printf("无效的选择，请重试。\n");
@@ -196,6 +194,5 @@ void customersCreating(){
         system("cls");
     } while (choice != 0);
 
-    freeCustomers(customerList);
-    return;
+    return customerList;
 }
